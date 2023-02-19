@@ -9,12 +9,7 @@ const result = [];
 for (let i = 1; i <= N; i++) {
   switch (input[i]) {
     case "pop":
-      if (stack.length != 0) {
-        result.push(stack[stack.length - 1]);
-        stack.pop();
-      } else {
-        result.push(-1);
-      }
+      stack.length != 0 ? result.push(stack.pop()) : result.push(-1);
       break;
 
     case "size":
@@ -26,9 +21,7 @@ for (let i = 1; i <= N; i++) {
       break;
 
     case "top":
-      stack.length != 0
-        ? result.push(stack[stack.length - 1])
-        : result.push(-1);
+      stack.length != 0 ? result.push(stack.at(-1)) : result.push(-1);
       break;
 
     default:
@@ -38,4 +31,4 @@ for (let i = 1; i <= N; i++) {
   }
 }
 
-console.log(result.join("\n"))
+console.log(result.join("\n"));
