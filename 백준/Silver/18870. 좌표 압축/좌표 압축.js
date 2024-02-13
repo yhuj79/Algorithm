@@ -2,20 +2,24 @@ const fs = require("fs");
 const filePath = process.platform === "linux" ? "/dev/stdin" : "./input.txt";
 let input = fs.readFileSync(filePath).toString().trim().split("\n");
 
-const N = input[0];
-const X = input[1].split(" ");
-const result = [];
+input.shift();
 
-const set = new Set(X.sort((a, b) => a - b));
-const map = new Map();
+let arr = input[0].split(" ").map(item => Number(item));
 
-[...set].forEach((item, index) => {
-  map.set(item, index);
+let uniq = [...new Set([...arr])];
+let object = {};
+
+uniq.sort(function(a, b){
+    return b-a;
+})
+
+for(let i=0; i<uniq.length; i++){
+    object[uniq[i]] = uniq.length - i - 1;
+}
+
+let str = "";
+
+arr.forEach((item) => {
+    str += object[item] + " ";
 });
-
-const arr = input[1].split(" ");
-arr.forEach((item, index) => {
-  result.push(map.get(item));
-});
-
-console.log(result.join(" "));
+console.log(str);
